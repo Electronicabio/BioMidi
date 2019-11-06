@@ -1,36 +1,39 @@
-// Include library needed for capacitive sensor reading
+//Librerias
+/*
+Libreria CapacitiveSensor: permite utilizar dos o mas pin del Arduino en un sensor capacitivo
+*/
 #include <CapacitiveSensor.h>
+/*
+Libreria Adafruit_NeoPixel: permite manipular los leds (Leds utilizados: sk6812)
+*/
 #include <Adafruit_NeoPixel.h>
-
-// MIDI channel from 0 to 15
+//seleccion del canal para MIDI del 0 al 15, el canal escogido ha sido el 1
 #define  midichannel 1;                             
-
-//NEOPIXEL
-#define PIN 8
-#define NUM_LEDS 93
-int delayValue = 500;
+//NEOPIXEL: variables necesarias para inicializar los leds (o el arreglo de leds)
+#define PIN 8 //pin de salida 
+#define NUM_LEDS 93 //cantidad de Leds
+int delayValue = 500; //tiempo de espera
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
-
-// Note: we use the same trasmitter pin for all the sensor in order to use less digital pin. 
-
-CapacitiveSensor   cs_3_2 = CapacitiveSensor(2,3);          
-CapacitiveSensor   cs_4_2 = CapacitiveSensor(2,4);        
-CapacitiveSensor   cs_5_2 = CapacitiveSensor(2,5);        
-CapacitiveSensor   cs_6_2 = CapacitiveSensor(2,6);
-CapacitiveSensor   cs_7_2 = CapacitiveSensor(2,7);
-
-//sensibilidad de cada material, depende del tipo de material, +resistencia = -treshold
-//materiales en estado gelatinoso tienen menos threshold
-int tresh1 = 1500;
-int tresh2 = 800;
-int tresh3 = 1500;
-int tresh4 = 4000;
-int tresh5 = 2000;
+//strip: nombre del arreglo de leds
+//Nota: usamos el mismo pin transmisor para todos los leds
+CapacitiveSensor   cs_3_2 = CapacitiveSensor(2,3);       //sensor 1: base pin 2, salida pin 3   
+CapacitiveSensor   cs_4_2 = CapacitiveSensor(2,4);       //sensor 2: base pin 2, salida pin 4
+CapacitiveSensor   cs_5_2 = CapacitiveSensor(2,5);       //sensor 3: base pin 2, salida pin 5 
+CapacitiveSensor   cs_6_2 = CapacitiveSensor(2,6);       //sensor 4: base pin 2, salida pin 6 
+CapacitiveSensor   cs_7_2 = CapacitiveSensor(2,7);       //sensor 5: base pin 2, salida pin 7 
+/*
+Threshold: umbral de resistencia del material, esta variable depende de cada material.
+*/
+int tresh1 = 1500; //Threshold sensor 1
+int tresh2 = 800;   //Threshold sensor 2
+int tresh3 = 1500;  //Threshold sensor 3
+int tresh4 = 4000;  //Threshold sensor 4
+int tresh5 = 2000;  //Threshold sensor 5
 
 
 // Note: change array size according to the number of capacitive sensor that you want to manage.
 
-//byte Notes[2] = {67, 71};                // MIDI notes associated with each sensor. Change these values to send other notes.
+// MIDI notes associated with each sensor. Change these values to send other notes.
 byte Notes[5] = {67, 71 , 64, 66, 73};
 //int Threshold[2] = {2000, 2000};      // Value that each sensor has to overcome to send a note 
 int Threshold[5] = {tresh1, tresh2, tresh3, tresh4, tresh5};                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
